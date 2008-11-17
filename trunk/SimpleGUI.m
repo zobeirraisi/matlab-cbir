@@ -113,3 +113,6 @@ function btnStart_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 handle = findobj(gcf, 'Tag', 'tbFile');
 file = get(handle, 'String');
+img = imread(file);
+findsimilar(img);
+
