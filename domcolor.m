@@ -7,7 +7,7 @@ NumDomColors = 5;
 [Rows Cols Ch] = size(Img);
 Img2 = double (reshape (Img, Rows * Cols, Ch));
 
-[center,U,obj_fcn] = fcm(Img2, NumDomColors, [2.0 100 1e-5 0]);
+[center,U,obj_fcn] = fcm(Img2, NumDomColors, [2.0 20 1e-5 0]);
 center = uint8(center);
 
 colors = zeros(5, 4);
