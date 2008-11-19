@@ -6,13 +6,15 @@ similarities = [];
 % should load this elsewhere for speed
 load db/features
 
-[csd32 csd128 dom] = calcfeatures(img);
+[csd32 csd128 dom edge] = calcfeatures(img);
 
+% calculate distances
 for i = 1:size(names, 1)
     a = pdist([csd32; csd32hist(i, :)]);
     b = pdist([csd128; csd128hist(i, :)]);
     c = domcolordist(dom, domcolors((i*5-4):i*5, :));
-    similarities = [similarities; a b c];
+    d = ehddist(edge, edges(i, :), 1, 1, 5);
+    similarities = [similarities; a b c d];
 end
 
 % normalize the columns
@@ -22,11 +24,14 @@ for i = 1:size(similarities, 2)
     similarities(:, i) = (similarities(:, i) - m) ./ s;   
 end
 
+% give the ehd twice as much weight
+similarities(:, 4) = 2*similarities(:, 4);
+
 % add the similarities together
 sims = sum(similarities');
 
+% plot in the correct order
 [val I] = sort(sims);
-
 figure;
 for i = 1:size(I, 2);
     f = imread(['db/' names(I(i), :)]);
