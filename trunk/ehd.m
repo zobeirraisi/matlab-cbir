@@ -1,19 +1,19 @@
 function H = ehd(Img, Threshold)  
  
 % Img = imread (Image);
-[x y z] = size(Img);
-x = x/4;
-y = y/4;
+[oldx oldy z] = size(Img);
+x = oldx/4;
+y = oldy/4;
 if mod(x, 2) ~= 0
     x = x + 1;
 end
 if mod(y, 2) ~= 0
     y = y + 1;
 end
-Img2 = zeros([x*4 y*4 z]);
-Img2(1:x, 1:y, 1:z) = Img(1:x, 1:y, 1:z);
+Img2 = uint8(zeros([x*4 y*4 z]));
+Img2(1:oldx, 1:oldy, 1:z) = Img(1:oldx, 1:oldy, 1:z);
 Img = Img2;
-% figure; imshow (Img);
+%figure; imshow (Img);
 % Create the image Intensity
 Image = rgb2gray(im2double(Img));
 
