@@ -6,7 +6,7 @@ similarities = [];
 % should load this elsewhere for speed
 load db/features
 
-[csd32 csd128 dom edge] = calcfeatures(img);
+[csd128 edge] = calcfeatures(img);
 
 % calculate distances
 for i = 1:size(names, 1)
@@ -36,9 +36,9 @@ sims = sum(similarities');
 [val I] = sort(sims);
 figure;
 %for i = 1:size(I, 2);
-for i = 1:12
+for i = 1:20
     f = imread(['db/' names(I(i), :)]);
-    subplot(4,3,i);
+    subplot(4,5,i);
     imshow(f);
 end
 
