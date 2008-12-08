@@ -25,9 +25,8 @@ for i = 1:size(similarities, 2)
     similarities(:, i) = (similarities(:, i) - m) ./ s;   
 end
 
-% give the ehd twice as much weight
-%similarities(:, 4) = 2*similarities(:, 4);
-similarities(:, 2) = 1.2*similarities(:, 2);
+% give the ehd slightly less weight than csd
+similarities(:, 2) = 0.8*similarities(:, 2);
 
 % add the similarities together
 sims = sum(similarities');
