@@ -31,13 +31,16 @@ similarities(:, 2) = 0.8*similarities(:, 2);
 % add the similarities together
 sims = sum(similarities');
 
-% plot in the correct order
+% first show the target image
+subplot(5,5,1);
+imshow(img);
+
+% next plot the results in the correct order
 [val I] = sort(sims);
 figure;
-%for i = 1:size(I, 2);
 for i = 1:20
     f = imread(['db/' names(I(i), :)]);
-    subplot(4,5,i);
+    subplot(5,5,i+1);
     imshow(f);
 end
 
